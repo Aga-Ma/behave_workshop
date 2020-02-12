@@ -1,2 +1,2 @@
-# behave_workshop
+# Behave workshop
 Materials for behave workshop
