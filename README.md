@@ -1,2 +1,2 @@
 # Behave workshop
-Materials for behave workshop
+Resources for behave workshop
