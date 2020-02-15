@@ -3,3 +3,4 @@ jupyter >= 1.0.0
 jupyterthemes>=0.20.0
 rise >= 5.6..0
 selenium >= 3.141.0
+allure-behave==2.8.10
