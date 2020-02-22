@@ -5,7 +5,8 @@ Feature: testing google
     Then it should have a title "Google"
 
   Scenario: Lenghty google search
-    Given the google search page is open
+#    Given the google search page is open
+    Given a user visit google
     When the user searches for the phrase:
     """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed risus risus,
@@ -13,7 +14,7 @@ Feature: testing google
       Vivamus ornare semper suscipit. Morbi porta consectetur felis, et porttitor tellus auctor non.
       Fusce in ligula at mauris lacinia rutrum. Sed vitae gravida libero.
     """
-    Then one of the results contains "All the facts"
+    Then one of the results contains "Wikipedia"
 
 
 
