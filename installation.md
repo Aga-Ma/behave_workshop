@@ -2,7 +2,8 @@
 
 [Python3](https://www.python.org/downloads/)  
 [Git](https://git-scm.com/downloads)  
-[PyCharm Community](https://www.jetbrains.com/pycharm/download/#section=windows) or another IDE
+[PyCharm Community](https://www.jetbrains.com/pycharm/download/#section=windows) or another IDE  
+[Virtualenv](https://virtualenv.pypa.io/en/stable/) or [pipenv](https://github.com/pypa/pipenv)
 
 # Optional
 
