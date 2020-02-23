@@ -13,10 +13,12 @@ behave features/test.feature
 ```
  
 ## Filter tests by tag
+```bash
 behave --tags-help
 behave --tags @sometag
 behave --tags ~@atag
 behave --tags @testatg --tags @add,@remove
+```
  
 # Don't print skipped scenarios
 behave -k
