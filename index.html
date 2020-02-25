@@ -1,50 +1,175 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+  <title>BDD-Test Fest</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/black.css">
+  <link rel="stylesheet" href="css/custom/custom.css">
+  <link rel="stylesheet" href="css/custom/presentation_detail.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-		<script src="js/reveal.js"></script>
+  <!-- Printing and PDF exports -->
+  <script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+    <section>
+      <h3>Behave Driven Python</h3>
+      <h4>Web application testing with behave</h4>
+    </section>
+    <section id="about" class="present">
+      <h1>Who AM I?</h1>
+      <ul>
+        <li class="fragment grow" data-fragment-index="0"> Python developer</li>
+        <li class="fragment grow" data-fragment-index="1"> Scrum Master</li>
+        <li class="fragment grow" data-fragment-index="2"> Tech and soft skills trainer</li>
+        <li class="fragment grow" data-fragment-index="3"> Creative Mom</li>
+        <li class="fragment grow" data-fragment-index="4"> Visual Thinking enthusiast</li>
+      </ul>
+      <p>
+        <a href="https://www.linkedin.com/in/agnieszka-j-malek/" class="fa fa-linkedin"></a>
+        <a href="https://twitter.com/Malek_Agnieszka" class="fa fa-twitter"></a>
+        <a href="https://www.facebook.com/agnieszka.j.malek" class="fa fa-facebook"></a>
+        <a href="https://github.com/Aga-Ma" class="fa fa-github"></a>
+      </p>
+    </section>
+    <section id="agenda">
+      <section>
+        <h2>What are we going to work on today?</h2>
+      </section>
+      <section>
+        <h3>BDD - let's grab a little context</h3>
+        <ul>
+          <li>What is behavior and BDD?</li>
+          <li>Benefits of BDD</li>
+          <li>Python BDD test frameworks</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Behave Test Framework</h3>
+        <ul>
+          <li>Feature files</li>
+          <li>Steps implementation</li>
+          <li>Context</li>
+          <li>Step Data</li>
+          <li>Multiline text</li>
+          <li>Step parameters</li>
+          <li>Scenario outline</li>
+          <li>Hooks</li>
+          <li>Fixtures</li>
+          <li>Tags</li>
+        </ul>
+      </section>
+      <section id="summary">
+        <h3>Summary - put it all together</h3>
+        <ul>
+          <li>Full example</li>
+          <li>POM</li>
+          <li>Practice</li>
+          <li>Tips and Hints</li>
+        </ul>
+      </section>
+    </section>
+    <section id="goals">
+      <h1>Workshop goals</h1>
+      <p>After the training:</p>
+      <ol>
+        <li>You will know the BDD concept and its advantages</li>
+        <li>You will know how to work with `behave` framework</li>
+        <li>You will be able to create tests based on gained knowledge</li>
+      </ol>
+    </section>
+    <section id="bdd">
+      <section>
+        <h1>Behavior Driven Development</h1>
+      </section>
+      <section id="behavior">
+        <h2>What is behavior?</h2>
+        <p style="text-align:left">Where does TDD fall?</p>
+        <ul>
+          <li>What to test?</li>
+          <li>How much to test?</li>
+          <li>How to understand failing tests?</li>
+        </ul>
+        <p class="fragment" style="text-align:left"> “Behaviour” is a more useful word than “test”</p>
+      </section>
+      <section id="format">
+        <h2>`WHAT` more than `HOW`</h2>
+        <p style="text-align:left"><span class="keyword">Given</span> some initial context (the givens),</p>
+        <p style="text-align:left"><span class="keyword">When</span> an event occurs,</p>
+        <p style="text-align:left"><span class="keyword">Then</span> ensure some outcomes.</p>
+        <p style="text-align:left">BDD emphasizes the client's perspective</p>
+      </section>
+      <section id="definition">
+        <h2>What is BDD?</h2>
+        <p>BDD is a second-generation, outside-in, pull-based, multiple-stakeholder, multiple-scale,
+          high-automation, agile methodology. It describes a cycle of interactions with well-defined outputs,
+          resulting in the delivery of working, tested software that matters.</p>
+        <a href="https://dannorth.net/introducing-bdd/">Dan North - introducing BDD</a>
+      </section>
+      <section id="benefits">
+        <h2>Benefits</h2>
+        <ul>
+          <li>Allows everybody involved to write tests not just coders</li>
+          <li>Supports collaboration</li>
+          <li>Supports automation</li>
+          <li>It is specification by example</li>
+          <li>Encourage thinking about the application in a natural consistent language</li>
+        </ul>
+      </section>
+    </section>
+    <section style="text-align:left">
+      <h3>Python BDD test frameworks</h3>
+      <ul>
+        <li>Behave</li>
+        <li>pythest-bdd</li>
+        <li>radish</li>
+        <li>lettuce</li>
+      </ul>
+      <br>
+      <a href="https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/">Python BDD framework comparison
+        - Automation Panda</a>
+    </section>
+  </div>
+</div>
+<div class="presentation-details">
+  <p>
+    Behave Driven Python • TestFest 29.02.2020 • Agnieszka Malek
+  </p>
+</div>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				hash: true,
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/highlight/highlight.js' },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
-		</script>
-	</body>
+<script src="js/reveal.js"></script>
+
+<script>
+	// More info about config & dependencies:
+	// - https://github.com/hakimel/reveal.js#configuration
+	// - https://github.com/hakimel/reveal.js#dependencies
+	Reveal.initialize({
+		hash: true,
+		dependencies: [
+			{ src: 'plugin/markdown/marked.js' },
+			{ src: 'plugin/markdown/markdown.js' },
+			{ src: 'plugin/highlight/highlight.js' },
+			{ src: 'plugin/notes/notes.js', async: true }
+		],
+		slideNumber: true,
+	});
+</script>
+</body>
 </html>

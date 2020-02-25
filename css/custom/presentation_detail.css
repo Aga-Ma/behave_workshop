@@ -1,0 +1,31 @@
+/********************************************
+* CUSTOM
+*********************************************/
+#left {
+  display: inline-block;
+  left:-8.33%;
+  text-align: left;
+  float: left;
+  width:50%;
+  z-index:-10;
+}
+
+#right {
+  display: inline-block;
+  left:31.25%;
+  float: right;
+  text-align: left;
+  z-index:-10;
+  width:50%;
+}
+
+.presentation-details {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    font: .4em sans-serif;
+    font-size: 0.7em;
+    color: #eee;
+    padding: 20px 0 20px 60px;
+    z-index: 100;
+}
