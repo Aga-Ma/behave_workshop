@@ -1,25 +1,3 @@
-# Presentation plan
-- [Introduction](#Introduction)  
-  - [Who Am I?](#who-am-i?)
-  - [What are we going to work on today?](#agenda)  
-  - [Workshop goals](#goals)
-- [Behavior Driven Development](#behavior-driven-development)  
-  - [What is behave?](#what-is-behave)  
-  - [What is BDD?](#what-is-bdd?)
-  - [Benefits of BDD](#benefits-of-bdd)
-  - [Python BDD test frameworks](#python-bdd-test-frameworks)
-- [Behave Test Framework](#behave-test-framework)
-  - [Installation check](#installation)
-  - [Gherkin mechanics](#gherkin-mechanics)  
-    - [Given, When, Then (And, But)](#given-when-then-(and-but))  
-    - [A scenario outline](#a-scenario-outline)  
-  - [Python comes into play](#python-comes-into-play)  
-    - [Scenario Context](#scenario-context)  
-    - [Hooks](#hooks)  
-    - [Summary on how Behave works](#summary-on-how-behave-works)
-
-# Introduction
-
 ## Who am I?
 
 Python developer  
@@ -34,44 +12,61 @@ Where you can find me:
 [![alt text](http://i.imgur.com/9I6NRUm.png)](https://github.com/Aga-Ma)
 [<img src="http://i.imgur.com/4DfAevU.png" width="20"/>](https://www.linkedin.com/in/agnieszka-j-malek/)
 
-## Agenda
-
-* BDD
-  + What is behavior and BDD?
-  + Benefits of BDD
-  + Python BDD test frameworks
-* Behave Test Framework
-  + Gherkin mechanics  
-    - Example feature  
-    - The background selection
-    - A scenario outline
-  + Python comes into play
-    - Step definitions
-    - Scenario context
-    - Hooks
-    - Tags
-* Practical exercises
-* Usefull resources
-
-## Goals
+## Workshop goals
 
 After the training:
 * You will know the BDD concept and its advantages
 * You will know how to work with `behave` framework  
 * You will be able to create tests based on gained knowledge  
 
-# Behavior Driven Development
-## What is behave?
-In software it describes how the software operates
+## Agenda
+
+- [BDD - let's grab a little context](#bdd)
+  - [What is behavior?](#what-is-behavior)
+  - [What is BDD?](#what-is-bdd)
+  - [Benefits of BDD](#benefits-of-bdd)
+  - [Python BDD test frameworks](#python-bdd-test-frameworks)
+
+# BDD
+## What is behavior?
+In software it describes how the software operates  
+
+I had a problem. While using and teaching agile practices like test-driven development (TDD) on projects in
+different environments, I kept coming across the same confusion and misunderstandings. Programmers wanted
+to know where to start, what to test and what not to test, how much to test in one go, what to call their
+tests, and how to understand why a test fails.  
+[_Dan North_](https://dannorth.net/introducing-bdd/)
+
+Where does TDD fall short:
+* In TDD process developers want to know what to test, how much to test, and how to understand failing tests
+* Whiteout clear guidelines as to what should be tested and how confusion and misunderstanding are common
+* Presenting in a different light through BDD allow the development process to avoid a number of pitfails
 
 ### It answers WHAT more than HOW
 Behavior are defined early in development using specification by example: plain-language descriptions (Gherkin) that tell what more than how
-Behavior specs becomes requirements, ACC and acceptance tests (all in one)
+Behavior specs becomes requirements, ACC and acceptance tests (all in one)  
+
+BDD emphasizes the client's perspective  
 
 ## What is BDD?
-BDD is a second-generation, outside–in, pull-based, multiple-stakeholder, multiple-scale, high-automation, agile methodology. It describes a cycle of interactions with well-defined outputs, resulting in the delivery of working, tested software that matters.  
+BDD is a second-generation, outside–in, pull-based, multiple-stakeholder, multiple-scale, high-automation, 
+agile methodology. It describes a cycle of interactions with well-defined outputs, resulting in the delivery 
+of working, tested software that matters. 
+
+_Dan North_ 
 
 ## Benefits of BDD
+
+The Big BDD picture: The main goals of BDD are collaboration and automation
+
+* Allows everybody involved to write tests not just coders
+* Supports collaboration - behviors testing allows you to test your application as a whole in such a way that all
+stakeholders can define and understand what is being test
+* Supports automation
+* Behavior are identified using specification by example
+* Encourage thinking about the application in a natural consistent language
+* Behavior specs becomes requirements, ACC and acceptance tests (all in one)
+* BDD is a refinement of Agile process, not an overhoul - formalizes ACC and test coverage
 
 ## Python BDD test frameworks
 
@@ -80,7 +75,7 @@ BDD is a second-generation, outside–in, pull-based, multiple-stakeholder, mult
 [radish](http://radish-bdd.io/)  
 [lettuce](http://lettuce.it/)  
   
-https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/
+[Python BDD framework comparison - Automation Panda Blog](https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/)
 
 # Behave Test Framework
 ## Installation check
