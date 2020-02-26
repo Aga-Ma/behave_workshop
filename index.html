@@ -24,6 +24,7 @@
 	link.type = 'text/css';
 	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 	document.getElementsByTagName( 'head' )[0].appendChild( link );
+
   </script>
 </head>
 <body>
@@ -147,11 +148,49 @@
       <a href="https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/">Python BDD framework comparison
         - Automation Panda</a>
     </section>
+    <section>
+      <h2>Behave Test Framework</h2>
+    </section>
+    <section id="installation">
+      <h2>Installation</h2>
+      <a href="https://github.com/Aga-Ma/behave_workshop/blob/master/installation.md">Aga-Ma/behave_workshop/installation.md</a>
+    </section>
+    <section id="featurefiles">
+      <section>
+        <h2>Feature Files</h2>
+      </section>
+      <section>
+        <p>features/google.feature<p>
+        <pre>
+        <code class="hljs gherkin" data-line-numbers="2,7-10">
+        Feature: Google search
+            As a user
+            I'd like to search for some phrase
+            to get new information about it
+
+          Scenario:  a user can search for a phrase
+            Given a user visit google
+            When the user searches for the phrase
+            Then one of the results contains expected result
+        </code>
+      </pre>
+      </section>
+    </section>
+    <section>
+
+    </section>
+    <section>
+
+    </section>
+    <section>
+
+    </section>
   </div>
 </div>
 <div class="presentation-details">
   <p>
-    Behave Driven Python • <a href="https://testfest.pl/speaker/agnieszka-malek/">TestFest</a> 29.02.2020 • Agnieszka Malek
+    Behave Driven Python • <a href="https://testfest.pl/speaker/agnieszka-malek/">TestFest</a> 29.02.2020 • Agnieszka
+    Malek
   </p>
 </div>
 
@@ -171,6 +210,7 @@
 		],
 		slideNumber: true,
 	});
+
 </script>
 </body>
 </html>

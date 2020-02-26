@@ -26,6 +26,11 @@ After the training:
   - [What is BDD?](#what-is-bdd)
   - [Benefits of BDD](#benefits-of-bdd)
   - [Python BDD test frameworks](#python-bdd-test-frameworks)
+- [Behave test Framework](#behave-test-framework)
+  -[Installation check](#installation-check)
+  -[Feature files](#feature-files)
+    -[Gherkin mechanics](#gherkin-mechanics)
+    -[Writing a scenario](#writing-a-scenario)
 
 # BDD
 ## What is behavior?
@@ -82,28 +87,32 @@ stakeholders can define and understand what is being test
 
 Pre-training preparation - [behave_workshop/installation.md](installation.md)
 
-## Gherkin mechanics
-### Given, When, Then (And, But)
+## Feature Files
 
-<span style="color: blue;">Scenario</span>: Refunded items should be returned to stock  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Given**</span> a customer previously bought a black sweater from me  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">and</span> I currently have three black sweaters left in stock.  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**When**</span> he returns the sweater for a refund  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Then**</span> I should have four black sweaters in stock.,  
-  
-<span style="color: blue;">Scenario</span>: Replaced items should be returned to stock  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Given**</span> that a customer buys a blue garment  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">and</span> I have two blue garments in stock  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">and</span> three black garments in stock.  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**When**</span> he returns the garment for a replacement in black,  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Then**</span> I should have three blue garments in stock  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">and</span> two black garments in stock.  
+Feature files has a natural language format - describing a feature or part of a feature with representative examples of
+expected outcomes
+
+### Gherkin mechanics
+Given, when, then (and, but) - forms the actual steps. Those map to python step implementation.
 
 <span style="color: red;">**Feature**</span>: feature name  
 
-&nbsp;&nbsp;<span style="color: blue;">**Scenario**</span>: some scenario  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Given**</span> some condition  
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Then**</span> some result is expected.  
+&nbsp;&nbsp;<span style="color: blue;">**Scenario**</span>: some scenario   
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Given**</span> some condition <span style="color: grey;">#put the system in a known state</span>   
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**When**</span> some action taken <span style="color: grey;">#we take key action the user or external system performs</span>   
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">**Then**</span> some result is expected. <span style="color: grey;">#we observe outcomes</span>   
+
+
+You may also include "And" or "But" as a step - those are renamed by behave to take the name of their preceding step
+### Writing a scenario
+
+Steps:  
+1. Create a `features` directory in your project path  
+2. In `features` directory create a file `google.feature`  
+![alt text](./img/featurefiles.png "First feature file")
+3. Write you first scenario
+![alt text](./img/googlesearchfeature.png "Google search feature")
+
 
 ### A scenario outline
 ### TO DO (Example)
@@ -135,6 +144,6 @@ environement.py
 # Summary on how Behave works
 
 #Practice
-Blog features - [blog/features](blog/features)  
-E-learning portal features - [e-learning_portal/features](../e-learning_portal/features)
+Blog features - [blog/features](../blog/features)  
+E-learning portal features - [e-learning_portal/features](../e-learning_portal/features)  
 
