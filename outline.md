@@ -26,11 +26,11 @@ After the training:
   - [What is BDD?](#what-is-bdd)
   - [Benefits of BDD](#benefits-of-bdd)
   - [Python BDD test frameworks](#python-bdd-test-frameworks)
-- [Behave test Framework](#behave-test-framework)
-  -[Installation check](#installation-check)
-  -[Feature files](#feature-files)
-    -[Gherkin mechanics](#gherkin-mechanics)
-    -[Writing a scenario](#writing-a-scenario)
+- [Behave test Framework](#behave-test-framework)  
+  - [Installation check](#installation-check)  
+  - [Feature files](#feature-files)  
+    - [Gherkin mechanics](#gherkin-mechanics)  
+    - [Writing a scenario](#writing-a-scenario)  
 
 # BDD
 ## What is behavior?
@@ -106,12 +106,17 @@ Given, when, then (and, but) - forms the actual steps. Those map to python step 
 You may also include "And" or "But" as a step - those are renamed by behave to take the name of their preceding step
 ### Writing a scenario
 
+Behave operates on paths
+1. features - with feature files written by your business analyst / sponsor / product owner / whoever 
+with your behavior scenarios
+2. steps - with python step implementation for the scenarios
+
 Steps:  
 1. Create a `features` directory in your project path  
 2. In `features` directory create a file `google.feature`  
 ![alt text](./img/featurefiles.png "First feature file")
-3. Write you first scenario
-![alt text](./img/googlesearchfeature.png "Google search feature")
+3. Write your first scenario  
+![alt text](./img/googlesearchfeature.PNG "Google search feature")  
 
 
 ### A scenario outline
