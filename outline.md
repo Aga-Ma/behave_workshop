@@ -31,6 +31,8 @@ After the training:
   - [Feature files](#feature-files)  
     - [Gherkin mechanics](#gherkin-mechanics)  
     - [Writing a scenario](#writing-a-scenario)  
+  - [Steps](#steps)  
+    - [Step file creation](#step-file-creation)  
 
 # BDD
 ## What is behavior?
@@ -117,24 +119,48 @@ Steps:
 ![alt text](./img/featurefiles.png "First feature file")
 3. Write your first scenario  
 ![alt text](./img/googlesearchfeature.PNG "Google search feature")  
+4. Run it with `behave` command
+5. Go further to fix it ;)
 
+## Steps
 
-### A scenario outline
-### TO DO (Example)
+Steps used in the scenarios are implemented in Python files in the `steps` directory.
+You call the files whatever you like as long as they use the `.py` extension. You don't need to tell behave which ones to
+use - it will use all of them.
 
-## Python comes into play
+### Step file creation
 
-Step definitions (Gluing step to definitions (decorators))
+Step definition - a python function decorated by a matching string in a step definition module.  
+Given, When, Then steps are "glued" to a step definitions with decorators.  
 
-+--features/  
-|   +--steps/       # -- Steps directory  
-|   |    +-- *.py   # -- Step implementation or use step-library python files.  
-|   +-- *.feature   # -- Feature files written by your Business Analyst / Sponsor / whoever   
-                    # with your behaviour scenarios in it  
+Steps are identified using decorators which match the predicate from the feature file: given, when, then, step.  
+The decorators accepts a string containing the rest of the phrase used in the scenario step.  
+
+1. Create a `steps` directory in `features` path  
+2. In `steps` directory create a file `googlesearch.py`  
+![alt text](./img/stepsdefinitions.png "steps dir")  
+3. Run it with `behave` - behave prints all missing steps as `step_impl`
+The function names do not need to have a unique symbol name. The text matching selects the step function from the step 
+registry before it is called as anonymous function.  
+Anonymous function - function definition that is not bound to an identifier. Anonymous functions are often arguments being
+passed to highest order functions.  
+![alt text](./img/stepimpl.PNG "steps identifier")  
+4. Correct our feature file to serach for something meaningful  
+![alt text](./img/searchbehave.PNG "search behave python")  
+5. Run precheck to check if behave can find our steps definitions: `behave --dry-run`  
+![alt text](./img/dryrun.PNG "dryrun")  
+6. Make it work  
+
+7. Run your code with verbose option `behave -v` to check if you want to see what behave is doing in attempting to find your features  
                     
 ### Scenario Context
 
+
+### A scenario outline
+
+
 ### Hooks 
+
 environement.py
 +-- features/  
 |     +-- steps/  

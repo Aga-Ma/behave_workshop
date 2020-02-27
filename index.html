@@ -148,7 +148,7 @@
       <a href="https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/">Python BDD framework comparison
         - Automation Panda</a>
     </section>
-    <section>
+    <section id="behave">
       <h2>Behave Test Framework</h2>
     </section>
     <section id="installation">
@@ -159,31 +159,77 @@
       <section>
         <h2>Feature Files</h2>
       </section>
-      <section>
-        <p>features/google.feature<p>
+      <section id="googlesearch">
+        <p>features/google.feature</p>
         <pre>
-        <code class="hljs gherkin" data-line-numbers="2,7-10">
-        Feature: Google search
-            As a user
-            I'd like to search for some phrase
-            to get new information about it
+          <code class="hljs gherkin" data-line-numbers="2,7-10">
+          Feature: Google search
+              As a user
+              I'd like to search for some phrase
+              to get new information about it
 
-          Scenario:  a user can search for a phrase
-            Given a user visit google
-            When the user searches for the phrase
-            Then one of the results contains expected result
-        </code>
-      </pre>
+            Scenario:  a user can search for a phrase
+              Given a user visit google
+              When the user searches for the phrase
+              Then one of the results contains expected result
+          </code>
+        </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/featurefiles">behave_demo/releases/tag/featurefiles</a>
+      </section>
+      <section id="run">
+        <p>Let's finally run it!</p>
+        <img src="img/featurerun.png" alt="no steps directory error">
+        <p class="fragment">...and now let's fix it</p>
       </section>
     </section>
-    <section>
+    <section id="steps">
+      <section>
+        <h2>Python comes into play</h2>
+      </section>
+      <section id="behavesearch">
+        <p>First let's maybe look for something meaningful</p>
+        <p>features/google.feature</p>
+        <pre><code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
+    As a user
+    I'd like to search for some phrase
+    to get new information about it
 
-    </section>
-    <section>
+  Scenario:  a user can search for a phrase
+    Given a user visit google
+    When the user searches for the behave python phrase
+    Then one of the results contains: Welcome to behave
+          </code>
+        </pre>
+      </section>
+      <section id="definitions">
+        <p>features/steps/googlesearch.py</p>
+        <pre>
+          <code class="hljs python">from behave import given, when, then
 
-    </section>
-    <section>
+@given('a user visit google')
+def step_impl(context):
+    context.web.open('http://www.google.com')
 
+@when('the user searches for the behave python phrase')
+def step_impl(context):
+    search_input = context.web.find_by_xpath("//input[@name='q']")
+    search_input.send_keys("behave python")
+
+@then('one of the results contains: Welcome to behave')
+def step_impl(context):
+    xpath = "//*[contains(text(), 'Welcome to behave')]"
+    results = context.web.finds_by_xpath(xpath)
+    assert len(results) > 0
+          </code>
+        </pre>
+      </section>
+      <section id="dryrun">
+        <p style="text-align:left">No, it will not work yet</p>
+        <p style="text-align:left">But let's do some precheck with 'behave --dry-run'</p>
+        <img src="img/dryrun.PNG" alt="dryrun">
+        <p class="fragment" style="text-align:left">Looks promising. Doesn't it?<br>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/steps">Aga-Ma/behave_demo/releases/tag/steps</a></p>
+      </section>
     </section>
   </div>
 </div>
