@@ -33,6 +33,7 @@ After the training:
     - [Writing a scenario](#writing-a-scenario)  
   - [Steps](#steps)  
     - [Step file creation](#step-file-creation)  
+    - [Context](#context)
 
 # BDD
 ## What is behavior?
@@ -149,13 +150,18 @@ passed to highest order functions.
 ![alt text](./img/searchbehave.PNG "search behave python")  
 5. Run precheck to check if behave can find our steps definitions: `behave --dry-run`  
 ![alt text](./img/dryrun.PNG "dryrun")  
-6. Make it work  
 
+### Context
+
+It's variable where you and behave can store information to share around.  
+It runs at three levels and is automatically managed by behave. When behave launches into a new feature or scenario it adds
+a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
+the duration of the activity.
+
+====================
+6. Make it work  
 7. Run your code with verbose option `behave -v` to check if you want to see what behave is doing in attempting to find your features  
                     
-### Scenario Context
-
-
 ### A scenario outline
 
 
