@@ -200,7 +200,7 @@ Scenario:  a user can search for a phrase
         <h3>Page Object Model</h3>
       </section>
       <section>
-        <img src="img/pomstructure.PNG" alt="pom structure">
+        <img src="img/pomstructure.PNG" alt="pom structure"><br>
         <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/pom">behave_demo/releases/tag/pom</a>
       </section>
       <section id="basepage">
@@ -277,7 +277,7 @@ class ResultPage(BasePage):
       <section id="behavesearch">
         <p>First let's maybe look for something meaningful</p>
         <p>features/google.feature</p>
-        <pre><code class="hljs gherkin" data-line-numbers="7,9">Feature: Google search
+        <pre><code class="hljs gherkin" data-line-numbers="8,9">Feature: Google search
     As a user
     I'd like to search for some phrase
     to get new information about it
@@ -351,28 +351,33 @@ def step_impl(context):
         <p>features/steps/googlesearch.py</p>
         <pre>
           <code class="hljs python">from behave import given, when, then
-from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+
+from features.steps.pages import *
 
 
 @given('a user visit google')
 def step_impl(context):
-    context.web.open('http://www.google.com')
+    context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
+    page = SearchPage(context)
+    page.load('http://www.google.com')
 
 
 @when('the user searches for the "{search}" phrase')
 def step_impl(context, search):
-    search_input = context.web.find_by_xpath("//input[@name='q']")
-    search_input.send_keys(search)
-    search_input.send_keys(Keys.RETURN)
+    page = SearchPage(context)
+    page.search(search)
 
 
 @then('one of the results contains: "{expected_result}"')
 def step_impl(context, expected_result):
-    xpath = "//*[contains(text(), '{expected_result}')]".format(expected_result=expected_result)
-    results = context.web.finds_by_xpath(xpath)
-    assert len(results) > 0
+    page = ResultPage(context)
+    results = page.phrase_result_count(expected_result)
+    context.driver.quit()
+    assert results > 0
           </code>
         </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/stepparameters">behave_demo/releases/tag/stepparameters</a></p>
       </section>
     </section>
     <section id="environment">
