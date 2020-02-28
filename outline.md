@@ -186,6 +186,9 @@ the duration of the activity.
 
 It is an instance of behave.runner.Context.  
 
+When behave launches into a new feature or scenario it adds a new layer to the context, allowing the new activity 
+level to add new values, or overwrite ones previously defined, for the duration of that activity
+
 ## Steps implementation
 
 ### Dryrun  

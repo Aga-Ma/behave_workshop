@@ -170,7 +170,7 @@
       </section>
       <section id="googlesearch">
         <p>features/googlesearch.feature</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
   As a user
   I'd like to search for some phrase
@@ -206,7 +206,7 @@ Scenario:  a user can search for a phrase
       </section>
       <section id="basepage">
         <p>features/steps/pages/BasePage.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">class BasePage(object):
 
     def __init__(self, driver):
@@ -223,7 +223,7 @@ Scenario:  a user can search for a phrase
       </section>
       <section id="searchpage">
         <p>features/steps/pages/SearchPage.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
@@ -245,7 +245,7 @@ class SearchPage(BasePage):
       </section>
       <section id="resultspage">
         <p>features/steps/pages/ResultsPage.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from selenium.webdriver.common.by import By
 
 from .BasePage import BasePage
@@ -269,7 +269,45 @@ class ResultPage(BasePage):
       </section>
     </section>
     <section id="context">
+      <section>
       <h2>Context</h2>
+        </section>
+      <section>
+	<h2>Attributes</h2>
+	<table>
+    	<thead><tr>
+            <th>Behave runner</th>
+            <th>User</th>
+        </tr></thead>
+        <tbody>
+        <tr>
+          <td>text</td>
+          <td>after_*</td>
+        </tr>
+        <tr>
+          <td>table</td>
+          <td>before_*</td>
+        </tr>
+        <tr>
+          <td>scenario</td>
+          <td>step definition</td>
+        </tr>
+        <tr>
+          <td>tags</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>feature</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>config</td>
+          <td></td>
+        </tr>
+        </tbody>
+    </table>
+        <p>and many others</p>
+</section>
     </section>
     <section id="steps">
       <section id="stepimpl">
@@ -278,7 +316,7 @@ class ResultPage(BasePage):
       <section id="behavesearch">
         <p>First let's maybe look for something meaningful</p>
         <p>features/googlesearch.feature</p>
-        <pre><code class="hljs gherkin" data-line-numbers="8,9">Feature: Google search
+        <pre class="noshadow"><code class="hljs gherkin" data-line-numbers="8,9">Feature: Google search
     As a user
     I'd like to search for some phrase
     to get new information about it
@@ -292,7 +330,7 @@ class ResultPage(BasePage):
       </section>
       <section id="definitions">
         <p>features/steps/googlesearch.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from behave import given, when, then
 from selenium import webdriver
 
@@ -336,7 +374,7 @@ def step_impl(context):
       </section>
       <section id="scenarioparameters">
         <p>features/googlesearch.feature</p>
-        <pre><code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
+        <pre class="noshadow"><code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
   As a user
   I'd like to search for some phrase
   to get new information about it
@@ -350,7 +388,7 @@ def step_impl(context):
       </section>
       <section id="refactor">
         <p>features/steps/googlesearch.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from behave import given, when, then
 from selenium import webdriver
 
@@ -387,7 +425,7 @@ def step_impl(context, expected_result):
       </section>
       <section>
         <p>features/steps/googlesearch.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python" data-line-numbers="3,12">@given('a user visit google')
 def step_impl(context):
     context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
@@ -406,7 +444,7 @@ def step_impl(context, expected_result):
       </section>
       <section>
         <p>features/steps/googlesearch.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from behave import given, when, then
 
 from features.steps.pages import *
@@ -434,7 +472,7 @@ def step_impl(context, expected_result):
       </section>
       <section>
         <p>features/environment.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from selenium import webdriver
 
 
@@ -454,7 +492,7 @@ def after_scenario(context, scenario):
       </section>
       <section>
         <p>features/fixtures.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from selenium import webdriver
 from behave.fixture import fixture
 
@@ -470,7 +508,7 @@ def browser_chrome(context):
       </section>
       <section>
         <p>features/environment.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">from behave import use_fixture
 
 from fixtures import browser_chrome
@@ -484,7 +522,7 @@ def before_tag(context, tag):
       </section>
       <section>
         <p>features/googlesearch.feature</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs gherkin">@fixture.browser.chrome
 Feature: Google search
   As a user
@@ -509,7 +547,7 @@ Feature: Google search
       </section>
       <section>
         <p>add to features/googlesearch.feature</p>
-        <pre><code class="hljs gherkin">Scenario:  a user can search for a very long phrase
+        <pre class="noshadow"><code class="hljs gherkin">Scenario:  a user can search for a very long phrase
     Given a user visit google
     When the user searches for the:
           """
@@ -522,7 +560,7 @@ Feature: Google search
       </section>
       <section>
         <p>add to features/steps/googlesearch.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">@when('the user searches for the')
 def step_impl(context):
     page = SearchPage(context)
@@ -536,7 +574,7 @@ def step_impl(context):
       </section>
       <section>
         <p>add to features/googlesearch.feature</p>
-        <pre><code class="hljs gherkin">  Scenario:  a user search something
+        <pre class="noshadow"><code class="hljs gherkin">  Scenario:  a user search something
     When user do the search of "Dan North"
     Then one of the results contains: "Introducing BDD"
           </code>
@@ -544,7 +582,7 @@ def step_impl(context):
       </section>
       <section>
         <p>add to features/steps/googlesearch.py</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs python">@when('user do the search of "{phrase}"')
 def step_impl(context, phrase):
     context.execute_steps(u"""
@@ -562,7 +600,7 @@ def step_impl(context, phrase):
       </section>
       <section>
         <p>features/scenariooutline.feature</p>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs gherkin">@fixture.browser.chrome
 Feature: Google search
   As a user
@@ -594,7 +632,7 @@ Feature: Google search
         <h2>Tags</h2>
       </section>
       <section>
-        <pre>
+        <pre class="noshadow">
           <code class="hljs bash">
 behave --tags-help
 behave --tags @sometag
@@ -607,6 +645,13 @@ behave --tags="(@a or @b) and not @c"
     <section id="summary">
       <section id="report">
         <h2>Report generation</h2>
+      </section>
+      <section>
+        <img src="img/allurereports.PNG" alt="allure report" style="max-width:50%" id="fuck">
+        <pre class="noshadow" style="height: 15%; width: 90%;">
+          <code class="hljs bash">behave -f allure_behave.formatter:AllureFormatter -o %allure_result_folder% ./features
+allure serve %allure_result_folder% #run in powershell</code>
+        </pre>
       </section>
       <section id="debug">
         <h2>Debugging</h2>
