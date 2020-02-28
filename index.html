@@ -160,7 +160,7 @@
         <h2>Project structure</h2>
       </section>
       <section>
-        <img src="img/basicstructure.PNG" alt="basic structure">
+        <img src="img/basicstructure.PNG" alt="basic structure" style="max-width:200%">
         <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/basicstructure">behave_demo/releases/tag/basicstructure</a>
       </section>
     </section>
@@ -186,8 +186,11 @@ Scenario:  a user can search for a phrase
       </section>
       <section id="run">
         <p>Let's finally run it!</p>
-        <img src="img/featurerun.png" alt="no steps directory error">
-        <p class="fragment">...and now let's fix it</p>
+        <pre class="noshadow">
+          <code class="hljs bash">(behave_demo) C:\Projects\behave_demo>behave
+ConfigError: No steps directory in 'C:\\Projects\\behave_demo\\features'</code>
+        </pre>
+        <p class="fragment">...and now let's fix this</p>
       </section>
     </section>
     <section id="python">
@@ -199,10 +202,6 @@ Scenario:  a user can search for a phrase
       </section>
       <section id="pom">
         <h3>Page Object Model</h3>
-      </section>
-      <section>
-        <img src="img/pomstructure.PNG" alt="pom structure"><br>
-        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/pom">behave_demo/releases/tag/pom</a>
       </section>
       <section id="basepage">
         <p>features/steps/pages/BasePage.py</p>
@@ -266,6 +265,7 @@ class ResultPage(BasePage):
         return len(phrase_results)
           </code>
         </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/pom">behave_demo/releases/tag/pom</a>
       </section>
     </section>
     <section id="context">
@@ -633,12 +633,10 @@ Feature: Google search
       </section>
       <section>
         <pre class="noshadow">
-          <code class="hljs bash">
-behave --tags-help
+          <code class="hljs bash">behave --tags-help
 behave --tags @sometag
 behave --tags="@foo and @bar"
-behave --tags="(@a or @b) and not @c"
-          </code>
+behave --tags="(@a or @b) and not @c"</code>
         </pre>
       </section>
     </section>
