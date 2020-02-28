@@ -33,27 +33,7 @@ After the training:
     - [Writing a scenario](#writing-a-scenario)  
   - [Steps](#steps)  
     - [Step file creation](#step-file-creation)  
-  - [Selenium](#selenium)  
-    - [Introduction to UI testing](#introduction-to-ui-testing)  
-    - [POM](#pom)  
-  - [Steps implementation](#steps-implementation)  
-    - [Dryrun](#dryrun)
-    - [Step Parameters](#step-parameters)
-  - [Context](#context)    
-  - [Hooks](#hooks)
-  - [Fixtures](#fixtures)
-  - [Step Data](#step-data)  
-    - [Multiline text](#multiline-text)  
-    - [Data tables](#data-tables)  
-    - [Execute step in a step](#execute-step-in-a-step)
-  - [Scenario outline](#scenario-outline)
-  - [Tags](#tags)
-- [Summary](#summary)
-  - [The DuckDuckGo example](#the-duckduckgo-example)  
-  - [Allure reports](#allure)
-  - [Debug](#debug)
-- [Practice](#practice)  
-
+    - [Context](#context)
 
 # BDD
 ## What is behavior?
@@ -166,33 +146,10 @@ registry before it is called as anonymous function.
 Anonymous function - function definition that is not bound to an identifier. Anonymous functions are often arguments being
 passed to highest order functions.  
 ![alt text](./img/stepimpl.PNG "steps identifier")  
-
-## Selenium
-
-### Introduction to UI testing
-
-### POM
-
-## Steps implementation
-
-### Dryrun  
-
 4. Correct our feature file to serach for something meaningful  
 ![alt text](./img/searchbehave.PNG "search behave python")  
 5. Run precheck to check if behave can find our steps definitions: `behave --dry-run`  
 ![alt text](./img/dryrun.PNG "dryrun")  
-
-### Step Parameters
-
-You may define a single Python step for multiple cases
-
-1. Let's modify our feature file  
-![alt text](./img/parametrizedfeature.PNG "parameters")   
-2. And the steps file accordingly  
-![alt text](./img/stepparameters.PNG "step parameters")     
-3. Check if everything looks fine `behave --dry-run`   
-
-====================  
 
 ### Context
 
@@ -201,44 +158,29 @@ It runs at three levels and is automatically managed by behave. When behave laun
 a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
 the duration of the activity.
 
-## Hooks
-
-## Fixtures
-
-## Step Data    
-
-### Multiline text
-
-### Data tables
-
-### Execute step in a step
+====================
+6. Make it work  
+7. Run your code with verbose option `behave -v` to check if you want to see what behave is doing in attempting to find your features  
                     
-## Scenario outline
+### A scenario outline
 
-## Tags
 
-# Summary
+### Hooks 
 
-Put it all together  
+environement.py
++-- features/  
+|     +-- steps/  
+|     |    +-- website_steps.py  
+|     |    +-- utils.py  
+|     |   
+|     +-- environment.py      # -- Environment controls(code to run before and after steps, scenarios, features or the whole shooting match)  
+|     +-- signup.feature  
+|     +-- login.feature  
+|     +-- account_details.feature  
 
-## The DuckDuckGo example
+# Summary on how Behave works
 
-### Demo
-
-### Allure  
-
-How to generate reports
-
-## Debug
-
-```bash
-behave -D BEHAVE_DEBUG_ON_ERROR
-```
-
-# Practice
-
-Go to: [Aga-Ma/behave_workshop](https://github.com/Aga-Ma/behave_workshop)
- 
-- Blog features - [blog/features](../blog/features)  
-- E-learning portal features - [e-learning_portal/features](../e-learning_portal/features)  
+#Practice
+Blog features - [blog/features](../blog/features)  
+E-learning portal features - [e-learning_portal/features](../e-learning_portal/features)  
 
