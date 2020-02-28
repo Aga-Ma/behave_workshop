@@ -25,9 +25,9 @@ After the training:
   - [What is behavior?](#what-is-behavior)
   - [What is BDD?](#what-is-bdd)
   - [Benefits of BDD](#benefits-of-bdd)
-  - [Python BDD test frameworks](#python-bdd-test-frameworks)
-- [Behave test Framework](#behave-test-framework)  
-  - [Installation check](#installation-check)  
+  - [Python BDD test frameworks](#python-bdd-test-frameworks)  
+- [Installation check](#installation-check)  
+- [Behave test Framework](#behave-test-framework)    
   - [Feature files](#feature-files)  
     - [Gherkin mechanics](#gherkin-mechanics)  
     - [Writing a scenario](#writing-a-scenario)  
@@ -37,18 +37,25 @@ After the training:
     - [Introduction to UI testing](#introduction-to-ui-testing)  
     - [POM](#pom)  
   - [Steps implementation](#steps-implementation)  
-    - [Dryrun](#dryrun)
-    - [Context](#context)  
-    - [Step Parameters](#step-parameters)
+    - [Dryrun](#dryrun) 
+    - [Step Parameters](#step-parameters)  
+  - [Context](#context)   
   - [Hooks](#hooks)
   - [Fixtures](#fixtures)
   - [Step Data](#step-data)  
-  - [Scenario outline](#scenario-outline)
+    - [Multiline text](#multiline-text)
+    - [Tables](#tables)
+    - [Execute step in a step](#execute-step-in-a-step)
+  - [Scenario outline](#scenario-outline)  
+- [Tags](#tags)  
 - [Summary](#summary)
   - [The DuckDuckGo example](#the-duckduckgo-example)  
   - [Allure reports](#allure)
   - [Debug](#debug)
 - [Practice](#practice)  
+
+
+*** Some parts of this outline were created based on official [behave tutorial](https://behave.readthedocs.io/en/latest/tutorial.html) ***
 
 
 # BDD
@@ -101,10 +108,11 @@ stakeholders can define and understand what is being test
   
 [Python BDD framework comparison - Automation Panda Blog](https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/)
 
-# Behave Test Framework
-## Installation check
+# Installation check
 
 Pre-training preparation - [behave_workshop/installation.md](installation.md)
+
+# Behave Test Framework
 
 ## Feature Files
 
@@ -178,13 +186,6 @@ passed to highest order functions.
 5. Run precheck to check if behave can find our steps definitions: `behave --dry-run`  
 ![alt text](./img/dryrun.PNG "dryrun")  
 
-### Context
-
-It's variable where you and behave can store information to share around.  
-It runs at three levels and is automatically managed by behave. When behave launches into a new feature or scenario it adds
-a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
-the duration of the activity.
-
 ### Step Parameters  
 
 Our feature still looks ugly.
@@ -198,15 +199,90 @@ You may define a single Python step for multiple cases
 ![alt text](./img/stepparameters.PNG "step parameters")     
 3. Check if everything looks fine `behave --dry-run`   
 
+Step definitions can use different types of step matchers and can also take parametrized input.
+
 ====================  
+
+## Context
+
+It's variable where you and behave can store information to share around.  
+It runs at three levels and is automatically managed by behave. When behave launches into a new feature or scenario it adds
+a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
+the duration of the activity.  
+
+It is an instance of behave.runner.Context.  
 
 ## Hooks
 
+Hooks should handle automation concerns that should not be exposed through Gherkin eg. selenium
+webdriver setup and cleanup.  
+Hooks are always get run despite failures.  
+
+`environment.py` file for hooks must appear under `features` directory. It define code to run 
+before and after certain event during testing.
+
+before_* and after_* options:  
+- scenario  
+- feature  
+- step  
+- tag  
+
+You can define values in your environmental controls file which may be set  at the feature level and then
+overriden for some scenarios.
+Changes made at the scenario level won't permanently affect the value at the feature level.
+
 ## Fixtures
 
-## Step Data    
-                    
+Simplyfy the setup/cleanup tasks that are often needed during test execution.  
+
+## Step Data  
+
+### Multiline text
+
+Any text block following a step wrapped im """ """ lines will be associated with the step.  
+The multiline text is available to the Python step code as the `.text` attribute in the context 
+variable passed into each step function.   
+
+### Tables
+
+You may also associate a table of data with a step by entering it, indented, following the step.  
+It is useful for loading specific required data into a model.
+
+Data tables are available to the Python step code as the `.table` attribute in the context variable.   
+
+### Execute step in a step  
+
+```python
+    @step('some step')
+    def step_impl(context):
+        context.execute_steps(u''' 
+            when ...
+             and ... ''')
+```
+     
 ## Scenario outline
+
+Sometimes a scenario should be run with a number of variables giving a set of known states, actions to take
+and expected outcomes.  
+
+Behave will run the scenario once for each (non-heading) line appearing in the example data tables.
+
+# Tags
+
+Controlling things with tags  
+This allow behave to selectively check parts of your feature.
+
+E.g.,  
+```bash
+--tags=tag_name
+--tags="not @tag_name"
+```
+
+Tags selection may be combined  
+```bash
+--tags="@wip or @slow"
+--tags="@wip and @slow"
+```
 
 # Summary
 
