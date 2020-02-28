@@ -25,16 +25,20 @@
 	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 	document.getElementsByTagName( 'head' )[0].appendChild( link );
 
+
+
+
+
   </script>
 </head>
 <body>
 <div class="reveal">
   <div class="slides">
-    <section>
+    <section class="present">
       <h3>Behave Driven Python</h3>
       <h4>Web application testing with behave</h4>
     </section>
-    <section id="about" class="present">
+    <section id="about">
       <h1>Who AM I?</h1>
       <ul>
         <li class="fragment grow" data-fragment-index="0"> Python developer</li>
@@ -81,9 +85,8 @@
         <h3>Summary - put it all together</h3>
         <ul>
           <li>Full example</li>
-          <li>POM</li>
+          <li>Reports generation with Allure</li>
           <li>Practice</li>
-          <li>Tips and Hints</li>
         </ul>
       </section>
     </section>
@@ -162,16 +165,15 @@
       <section id="googlesearch">
         <p>features/google.feature</p>
         <pre>
-          <code class="hljs gherkin" data-line-numbers="2,7-10">
-          Feature: Google search
-              As a user
-              I'd like to search for some phrase
-              to get new information about it
+          <code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
+  As a user
+  I'd like to search for some phrase
+  to get new information about it
 
-            Scenario:  a user can search for a phrase
-              Given a user visit google
-              When the user searches for the phrase
-              Then one of the results contains expected result
+Scenario:  a user can search for a phrase
+  Given a user visit google
+  When the user searches for the phrase
+  Then one of the results contains expected result
           </code>
         </pre>
         <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/featurefiles">behave_demo/releases/tag/featurefiles</a>
@@ -183,8 +185,20 @@
       </section>
     </section>
     <section id="steps">
-      <section>
+      <section id="python">
         <h2>Python comes into play</h2>
+      </section>
+      <section id="structure">
+        <h2>Project structure</h2>
+      </section>
+      <section id="selenium">
+        <h3>UI testing with Selenium</h3>
+      </section>
+      <section id="pom">
+        <h2>Python Object Model</h2>
+      </section>
+      <section id="stepimpl">
+        <h2>Let's implement some steps finally</h2>
       </section>
       <section id="behavesearch">
         <p>First let's maybe look for something meaningful</p>
@@ -205,6 +219,7 @@
         <p>features/steps/googlesearch.py</p>
         <pre>
           <code class="hljs python">from behave import given, when, then
+from selenium.webdriver.common.keys import Keys
 
 @given('a user visit google')
 def step_impl(context):
@@ -214,6 +229,7 @@ def step_impl(context):
 def step_impl(context):
     search_input = context.web.find_by_xpath("//input[@name='q']")
     search_input.send_keys("behave python")
+    search_input.send_keys(Keys.RETURN)
 
 @then('one of the results contains: Welcome to behave')
 def step_impl(context):
@@ -228,13 +244,109 @@ def step_impl(context):
         <p style="text-align:left">But let's do some precheck with 'behave --dry-run'</p>
         <img src="img/dryrun.PNG" alt="dryrun">
         <p class="fragment" style="text-align:left">Looks promising. Doesn't it?<br>
-        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/steps">Aga-Ma/behave_demo/releases/tag/steps</a></p>
+          <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/steps">behave_demo/releases/tag/steps</a></p>
+      </section>
+      <section>
+        <p>Our feature still looks ugly, </p>
+        <p>It just not make sense to have a searched phrase and expected result hardcoded</p>
+      </section>
+      <section id="stepparameters">
+        <h2>Step Parameters</h2>
+      </section>
+      <section id="scenarioparameters">
+        <p>features/google.feature</p>
+        <pre><code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
+  As a user
+  I'd like to search for some phrase
+  to get new information about it
+
+  Scenario:  a user can search for a phrase
+    Given a user visit google
+    When the user searches for the "behave python" phrase
+    Then one of the results contains: "Welcome to behave"
+          </code>
+        </pre>
+      </section>
+      <section id="refactor">
+        <p>features/steps/googlesearch.py</p>
+        <pre>
+          <code class="hljs python">from behave import given, when, then
+from selenium.webdriver.common.keys import Keys
+
+
+@given('a user visit google')
+def step_impl(context):
+    context.web.open('http://www.google.com')
+
+
+@when('the user searches for the "{search}" phrase')
+def step_impl(context, search):
+    search_input = context.web.find_by_xpath("//input[@name='q']")
+    search_input.send_keys(search)
+    search_input.send_keys(Keys.RETURN)
+
+
+@then('one of the results contains: "{expected_result}"')
+def step_impl(context, expected_result):
+    xpath = "//*[contains(text(), '{expected_result}')]".format(expected_result=expected_result)
+    results = context.web.finds_by_xpath(xpath)
+    assert len(results) > 0
+          </code>
+        </pre>
       </section>
     </section>
     <section id="context">
       <h2>Stop for a while</h2>
       <p> Did you noticed the `context` used everywhere around?</p>
       <p class="fragment">What is it?</p>
+    </section>
+    <section id="environment">
+      <section id="hooks">
+        <h2>Hooks</h2>
+      </section>
+      <section id="fixtures">
+        <h2>Fixtures</h2>
+      </section>
+    </section>
+    <section>
+      <section id="stepdata">
+        <h2>Step Data</h2>
+      </section>
+      <section id="multilinetext">
+        <h2>Step Data</h2>
+      </section>
+      <section id="datatables">
+        <h2>Tables of data</h2>
+      </section>
+      <section id="nestedstep">
+        <h2>Execute step in a step</h2>
+      </section>
+    </section>
+    <section id="scenariooutline">
+      <h2>Scenario Outline</h2>
+    </section>
+    <section id="tags">
+      <h2>Tags</h2>
+    </section>
+    <section id="summary">
+      <section id="demo">
+        <h2>The DuckDuckGo example</h2>
+      </section>
+      <section id="report">
+        <h2>Report generation</h2>
+      </section>
+      <section id="debug">
+        <h2>Debugging</h2>
+      </section>
+    </section>
+    <section id="practice">
+      <section>
+        <h2>Practice</h2>
+      </section>
+      <section id="git">
+        <a href="https://github.com/Aga-Ma"><img class="avatar" src="img/agama.png" alt="Avatar"></a><br>
+        <a href="https://github.com/Aga-Ma/behave_workshop">https://github.com/Aga-Ma/behave_workshop</a>
+      </section>
     </section>
   </div>
 </div>
@@ -261,6 +373,8 @@ def step_impl(context):
 		],
 		slideNumber: true,
 	});
+
+
 
 </script>
 </body>
