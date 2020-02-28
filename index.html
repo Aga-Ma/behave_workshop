@@ -349,7 +349,6 @@ def step_impl(context):
       </section>
       <section id="refactor">
         <p>features/steps/googlesearch.py</p>
-        <pre>
           <code class="hljs python">from behave import given, when, then
 from selenium import webdriver
 
@@ -376,7 +375,6 @@ def step_impl(context, expected_result):
     context.driver.quit()
     assert results > 0
           </code>
-        </pre>
         <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/stepparameters">behave_demo/releases/tag/stepparameters</a>
       </section>
     </section>
@@ -483,7 +481,7 @@ def before_tag(context, tag):
       <section>
         <p>features/googlesearch.feature</p>
         <pre>
-          <code class="hljs python">@fixture.browser.chrome
+          <code class="hljs gherkin">@fixture.browser.chrome
 Feature: Google search
   As a user
   I'd like to search for some phrase
@@ -519,6 +517,9 @@ Feature: Google search
       <h2>Tags</h2>
     </section>
     <section id="summary">
+      <section id="sum">
+        <h2>Summary</h2>
+      </section>
       <section id="demo">
         <h2>The DuckDuckGo example</h2>
       </section>
