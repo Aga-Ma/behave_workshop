@@ -168,7 +168,7 @@
         <h2>Feature Files</h2>
       </section>
       <section id="googlesearch">
-        <p>features/google.feature</p>
+        <p>features/googlesearch.feature</p>
         <pre>
           <code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
   As a user
@@ -276,7 +276,7 @@ class ResultPage(BasePage):
       </section>
       <section id="behavesearch">
         <p>First let's maybe look for something meaningful</p>
-        <p>features/google.feature</p>
+        <p>features/googlesearch.feature</p>
         <pre><code class="hljs gherkin" data-line-numbers="8,9">Feature: Google search
     As a user
     I'd like to search for some phrase
@@ -334,7 +334,7 @@ def step_impl(context):
         <h2>Step Parameters</h2>
       </section>
       <section id="scenarioparameters">
-        <p>features/google.feature</p>
+        <p>features/googlesearch.feature</p>
         <pre><code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
   As a user
   I'd like to search for some phrase
@@ -349,6 +349,7 @@ def step_impl(context):
       </section>
       <section id="refactor">
         <p>features/steps/googlesearch.py</p>
+        <pre>
           <code class="hljs python">from behave import given, when, then
 from selenium import webdriver
 
@@ -375,6 +376,7 @@ def step_impl(context, expected_result):
     context.driver.quit()
     assert results > 0
           </code>
+        </pre>
         <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/stepparameters">behave_demo/releases/tag/stepparameters</a>
       </section>
     </section>
@@ -503,11 +505,52 @@ Feature: Google search
       <section id="multilinetext">
         <h2>Multiline text</h2>
       </section>
-      <section id="datatables">
-        <h2>Tables of data</h2>
+      <section>
+        <p>add to features/googlesearch.feature</p>
+        <pre><code class="hljs gherkin">Scenario:  a user can search for a very long phrase
+    Given a user visit google
+    When the user searches for the:
+          """
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          """
+    Then one of the results contains: "Wikipedia"
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>add to features/steps/googlesearch.py</p>
+        <pre>
+          <code class="hljs python">@when('the user searches for the')
+def step_impl(context):
+    page = SearchPage(context)
+    page.search(context.text)
+          </code>
+        </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/multilinetext">behave_demo/releases/tag/multilinetext</a>
       </section>
       <section id="nestedstep">
         <h2>Execute step in a step</h2>
+      </section>
+      <section><p>add to features/googlesearch.feature</p>
+        <pre><code class="hljs gherkin">  Scenario:  a user search something
+    When user do the search of "Dan North"
+    Then one of the results contains: "Introducing BDD"
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>add to features/steps/googlesearch.py</p>
+        <pre>
+          <code class="hljs python">@when('user do the search of "{phrase}"')
+def step_impl(context, phrase):
+    context.execute_steps(u"""
+            given a user visit google
+             when the user searches for the "{search}" phrase
+        """.format(search=phrase))
+          </code>
+        </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/stepmacro">behave_demo/releases/tag/stepmacro</a>
       </section>
     </section>
     <section id="scenariooutline">
