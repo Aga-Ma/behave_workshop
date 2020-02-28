@@ -189,14 +189,16 @@ Scenario:  a user can search for a phrase
       <h2>Python comes into play</h2>
     </section>
     <section id="selenium">
-      <h2>UI testing with Selenium</h2>
-    </section>
-    <section id="pom">
-      <h3>Page Object Model</h3>
+      <sction>
+        <h2>UI testing with Selenium</h2>
+      </sction>
+      <section id="pom">
+        <h3>Page Object Model</h3>
+      </section>
     </section>
     <section id="steps">
       <section id="stepimpl">
-        <h2>Let's implement some steps finally</h2>
+        <h2>Steps implementation</h2>
       </section>
       <section id="behavesearch">
         <p>First let's maybe look for something meaningful</p>
@@ -244,10 +246,6 @@ def step_impl(context):
         <p class="fragment" style="text-align:left">Looks promising. Doesn't it?<br>
           <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/steps">behave_demo/releases/tag/steps</a></p>
       </section>
-      <section>
-        <p>Our feature still looks ugly, </p>
-        <p>It just not make sense to have a searched phrase and expected result hardcoded</p>
-      </section>
       <section id="stepparameters">
         <h2>Step Parameters</h2>
       </section>
@@ -294,9 +292,7 @@ def step_impl(context, expected_result):
       </section>
     </section>
     <section id="context">
-      <h2>Stop for a while</h2>
-      <p> Did you noticed the `context` used everywhere around?</p>
-      <p class="fragment">What is it?</p>
+      <h2>Context</h2>
     </section>
     <section id="environment">
       <section id="hooks">

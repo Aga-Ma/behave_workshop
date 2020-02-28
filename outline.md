@@ -185,7 +185,10 @@ It runs at three levels and is automatically managed by behave. When behave laun
 a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
 the duration of the activity.
 
-### Step Parameters
+### Step Parameters  
+
+Our feature still looks ugly.
+It just not make sense to have a searched phrase and expected result hardcoded.  
 
 You may define a single Python step for multiple cases
 
