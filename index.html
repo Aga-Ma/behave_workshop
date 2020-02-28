@@ -377,7 +377,7 @@ def step_impl(context, expected_result):
     assert results > 0
           </code>
         </pre>
-        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/stepparameters">behave_demo/releases/tag/stepparameters</a></p>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/stepparameters">behave_demo/releases/tag/stepparameters</a>
       </section>
     </section>
     <section id="environment">
@@ -445,9 +445,57 @@ def after_scenario(context, scenario):
     context.driver.quit()
           </code>
         </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/hooks">behave_demo/releases/tag/hooks</a>
       </section>
       <section id="fixtures">
         <h2>Fixtures</h2>
+      </section>
+      <section>
+        <p>features/fixtures.py</p>
+        <pre>
+          <code class="hljs python">from selenium import webdriver
+from behave.fixture import fixture
+
+
+@fixture
+def browser_chrome(context):
+    context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
+    context.driver.implicitly_wait(10)
+    yield context.driver
+    context.driver.quit()
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>features/environment.py</p>
+        <pre>
+          <code class="hljs python">from behave import use_fixture
+
+from fixtures import browser_chrome
+
+
+def before_tag(context, tag):
+    if tag == "fixture.browser.chrome":
+        use_fixture(browser_chrome, context)
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>features/googlesearch.feature</p>
+        <pre>
+          <code class="hljs python">@fixture.browser.chrome
+Feature: Google search
+  As a user
+  I'd like to search for some phrase
+  to get new information about it
+
+  Scenario:  a user can search for a phrase
+    Given a user visit google
+    When the user searches for the "behave python" phrase
+    Then one of the results contains: "Welcome to behave"
+          </code>
+        </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/fixtures">behave_demo/releases/tag/fixtures</a>
       </section>
     </section>
     <section id="stepdata">
