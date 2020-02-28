@@ -25,10 +25,6 @@
 	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 	document.getElementsByTagName( 'head' )[0].appendChild( link );
 
-
-
-
-
   </script>
 </head>
 <body>
@@ -151,12 +147,17 @@
       <a href="https://automationpanda.com/2019/04/02/python-bdd-framework-comparison/">Python BDD framework comparison
         - Automation Panda</a>
     </section>
-    <section id="behave">
-      <h2>Behave Test Framework</h2>
-    </section>
     <section id="installation">
       <h2>Installation</h2>
       <a href="https://github.com/Aga-Ma/behave_workshop/blob/master/installation.md">Aga-Ma/behave_workshop/installation.md</a>
+    </section>
+    <section id="behave">
+      <section>
+        <h2>Behave Test Framework</h2>
+      </section>
+      <section id="structure">
+        <h2>Project structure</h2>
+      </section>
     </section>
     <section id="featurefiles">
       <section>
@@ -184,19 +185,16 @@ Scenario:  a user can search for a phrase
         <p class="fragment">...and now let's fix it</p>
       </section>
     </section>
+    <section id="python">
+      <h2>Python comes into play</h2>
+    </section>
+    <section id="selenium">
+      <h2>UI testing with Selenium</h2>
+    </section>
+    <section id="pom">
+      <h3>Page Object Model</h3>
+    </section>
     <section id="steps">
-      <section id="python">
-        <h2>Python comes into play</h2>
-      </section>
-      <section id="structure">
-        <h2>Project structure</h2>
-      </section>
-      <section id="selenium">
-        <h3>UI testing with Selenium</h3>
-      </section>
-      <section id="pom">
-        <h2>Python Object Model</h2>
-      </section>
       <section id="stepimpl">
         <h2>Let's implement some steps finally</h2>
       </section>
@@ -313,7 +311,7 @@ def step_impl(context, expected_result):
         <h2>Step Data</h2>
       </section>
       <section id="multilinetext">
-        <h2>Step Data</h2>
+        <h2>Multiline text</h2>
       </section>
       <section id="datatables">
         <h2>Tables of data</h2>
@@ -373,8 +371,6 @@ def step_impl(context, expected_result):
 		],
 		slideNumber: true,
 	});
-
-
 
 </script>
 </body>
