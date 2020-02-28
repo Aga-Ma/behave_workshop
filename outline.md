@@ -177,6 +177,15 @@ passed to highest order functions.
 
 ### POM
 
+## Context
+
+It's variable where you and behave can store information to share around.  
+It runs at three levels and is automatically managed by behave. When behave launches into a new feature or scenario it adds
+a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
+the duration of the activity.  
+
+It is an instance of behave.runner.Context.  
+
 ## Steps implementation
 
 ### Dryrun  
@@ -200,17 +209,6 @@ You may define a single Python step for multiple cases
 3. Check if everything looks fine `behave --dry-run`   
 
 Step definitions can use different types of step matchers and can also take parametrized input.
-
-====================  
-
-## Context
-
-It's variable where you and behave can store information to share around.  
-It runs at three levels and is automatically managed by behave. When behave launches into a new feature or scenario it adds
-a new layer to the context, allowing new activity level to add new values or overwrite ones previously defined, for 
-the duration of the activity.  
-
-It is an instance of behave.runner.Context.  
 
 ## Hooks
 
