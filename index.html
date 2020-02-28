@@ -277,7 +277,7 @@ class ResultPage(BasePage):
       <section id="behavesearch">
         <p>First let's maybe look for something meaningful</p>
         <p>features/google.feature</p>
-        <pre><code class="hljs gherkin" data-line-numbers="1,6-9">Feature: Google search
+        <pre><code class="hljs gherkin" data-line-numbers="7,9">Feature: Google search
     As a user
     I'd like to search for some phrase
     to get new information about it
@@ -293,32 +293,42 @@ class ResultPage(BasePage):
         <p>features/steps/googlesearch.py</p>
         <pre>
           <code class="hljs python">from behave import given, when, then
-from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+
+from features.steps.pages import *
+
 
 @given('a user visit google')
 def step_impl(context):
-    context.web.open('http://www.google.com')
+    context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
+    page = SearchPage(context)
+    page.load('http://www.google.com')
+
 
 @when('the user searches for the behave python phrase')
 def step_impl(context):
-    search_input = context.web.find_by_xpath("//input[@name='q']")
-    search_input.send_keys("behave python")
-    search_input.send_keys(Keys.RETURN)
+    page = SearchPage(context)
+    page.search('behave python')
+
 
 @then('one of the results contains: Welcome to behave')
 def step_impl(context):
-    xpath = "//*[contains(text(), 'Welcome to behave')]"
-    results = context.web.finds_by_xpath(xpath)
-    assert len(results) > 0
+    page = ResultPage(context)
+    results = page.phrase_result_count('Welcome to behave')
+    context.driver.quit()
+    assert results > 0
           </code>
         </pre>
       </section>
       <section id="dryrun">
-        <p style="text-align:left">No, it will not work yet</p>
-        <p style="text-align:left">But let's do some precheck with 'behave --dry-run'</p>
+        <p style="text-align:left">Let's do some precheck with 'behave --dry-run'</p>
         <img src="img/dryrun.PNG" alt="dryrun">
         <p class="fragment" style="text-align:left">Looks promising. Doesn't it?<br>
           <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/steps">behave_demo/releases/tag/steps</a></p>
+      </section>
+      <section>
+        <h2>And run!</h2>
+        <img src="img/firstrun.PNG" alt="run status">
       </section>
       <section id="stepparameters">
         <h2>Step Parameters</h2>
