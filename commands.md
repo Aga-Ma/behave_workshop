@@ -17,11 +17,14 @@ behave features/test.feature
 behave --tags-help
 behave --tags @sometag
 behave --tags ~@atag
-behave --tags @testatg --tags @add,@remove
+behave --tags="@foo and @bar"
+behave --tags="(@a or @b) and not @c"
 ```
  
 # Don't print skipped scenarios
+```bash
 behave -k
+```
 
 # Save report 
 ## To json file

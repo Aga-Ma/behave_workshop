@@ -25,6 +25,7 @@
 	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 	document.getElementsByTagName( 'head' )[0].appendChild( link );
 
+
   </script>
 </head>
 <body>
@@ -589,15 +590,21 @@ Feature: Google search
       </section>
     </section>
     <section id="tags">
-      <h2>Tags</h2>
+      <section>
+        <h2>Tags</h2>
+      </section>
+      <section>
+        <pre>
+          <code class="hljs bash">
+behave --tags-help
+behave --tags @sometag
+behave --tags="@foo and @bar"
+behave --tags="(@a or @b) and not @c"
+          </code>
+        </pre>
+      </section>
     </section>
     <section id="summary">
-      <section id="sum">
-        <h2>Summary</h2>
-      </section>
-      <section id="demo">
-        <h2>The DuckDuckGo example</h2>
-      </section>
       <section id="report">
         <h2>Report generation</h2>
       </section>
@@ -639,6 +646,7 @@ Feature: Google search
 		],
 		slideNumber: true,
 	});
+
 
 
 </script>
