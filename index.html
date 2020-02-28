@@ -385,7 +385,8 @@ def step_impl(context, expected_result):
         <h2>Hooks</h2>
       </section>
       <section>
-        <p>features/steps/googlesearch.py</p><pre>
+        <p>features/steps/googlesearch.py</p>
+        <pre>
           <code class="hljs python" data-line-numbers="3,12">@given('a user visit google')
 def step_impl(context):
     context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
@@ -532,7 +533,8 @@ def step_impl(context):
       <section id="nestedstep">
         <h2>Execute step in a step</h2>
       </section>
-      <section><p>add to features/googlesearch.feature</p>
+      <section>
+        <p>add to features/googlesearch.feature</p>
         <pre><code class="hljs gherkin">  Scenario:  a user search something
     When user do the search of "Dan North"
     Then one of the results contains: "Introducing BDD"
@@ -554,7 +556,37 @@ def step_impl(context, phrase):
       </section>
     </section>
     <section id="scenariooutline">
-      <h2>Scenario Outline</h2>
+      <section>
+        <h2>Scenario Outline</h2>
+      </section>
+      <section>
+        <p>features/scenariooutline.feature</p>
+        <pre>
+          <code class="hljs gherkin">@fixture.browser.chrome
+Feature: Google search
+  As a user
+  I'd like to search for some phrase
+  to get new information about it
+
+  Scenario Outline:  a user can search for a phrases
+    Given a user visit google
+    When the user searches for the "&lt;search&gt;" phrase
+    Then one of the results contains: "&lt;expected result&gt;"
+
+    Examples: BDD topics
+      | search            | expected result             |
+      | BDD               | Behavior-driven development |
+      | Behaviour Testing | Tutorialspoint              |
+      | Dan North         | Introducing BDD             |
+
+    Examples: Selenium topics
+      | search            | expected result                 |
+      | Selenium          | Selenium Tutorial for Beginners |
+      | Page Object Model | Design Pattern                  |
+          </code>
+        </pre>
+        <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/scenarioutline">behave_demo/releases/tag/scenarioutline</a>
+      </section>
     </section>
     <section id="tags">
       <h2>Tags</h2>
@@ -607,6 +639,7 @@ def step_impl(context, phrase):
 		],
 		slideNumber: true,
 	});
+
 
 </script>
 </body>
