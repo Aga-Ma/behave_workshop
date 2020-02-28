@@ -203,6 +203,69 @@ Scenario:  a user can search for a phrase
         <img src="img/pomstructure.PNG" alt="pom structure">
         <a href="https://github.com/Aga-Ma/behave_demo/releases/tag/pom">behave_demo/releases/tag/pom</a>
       </section>
+      <section id="basepage">
+        <p>features/steps/pages/BasePage.py</p>
+        <pre>
+          <code class="hljs python">class BasePage(object):
+
+    def __init__(self, driver):
+        self.driver = driver
+        self.timeout = 30
+
+    def find_element(self, *loc):
+        return self.driver.find_element(*loc)
+
+    def load(self, url):
+        self.driver.get(url)
+          </code>
+        </pre>
+      </section>
+      <section id="searchpage">
+        <p>features/steps/pages/SearchPage.py</p>
+        <pre>
+          <code class="hljs python">from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+from .BasePage import BasePage
+
+
+class SearchPage(BasePage):
+
+    SEARCH_INPUT = (By.XPATH, "//input[@name='q']")
+
+    def __init__(self, context):
+        super().__init__(context.driver)
+
+    def search(self, phrase):
+        search_input = self.driver.find_element(*self.SEARCH_INPUT)
+        search_input.send_keys(phrase + Keys.RETURN)
+          </code>
+        </pre>
+      </section>
+      <section id="resultspage">
+        <p>features/steps/pages/ResultsPage.py</p>
+        <pre>
+          <code class="hljs python">from selenium.webdriver.common.by import By
+
+from .BasePage import BasePage
+
+
+class ResultPage(BasePage):
+
+    @classmethod
+    def phrase_results(cls, phrase):
+        xpath = f"//*[contains(text(), '{phrase}')]"
+        return By.XPATH, xpath
+
+    def __init__(self, context):
+        super().__init__(context.driver)
+
+    def phrase_result_count(self, phrase):
+        phrase_results = self.driver.find_elements(*self.phrase_results(phrase))
+        return len(phrase_results)
+          </code>
+        </pre>
+      </section>
     </section>
     <section id="context">
       <h2>Context</h2>
