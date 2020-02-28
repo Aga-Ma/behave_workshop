@@ -384,12 +384,74 @@ def step_impl(context, expected_result):
       <section id="hooks">
         <h2>Hooks</h2>
       </section>
+      <section>
+        <p>features/steps/googlesearch.py</p><pre>
+          <code class="hljs python" data-line-numbers="3,12">@given('a user visit google')
+def step_impl(context):
+    context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
+    page = SearchPage(context)
+    page.load('http://www.google.com')
+
+
+@then('one of the results contains: "{expected_result}"')
+def step_impl(context, expected_result):
+    page = ResultPage(context)
+    results = page.phrase_result_count(expected_result)
+    context.driver.quit()
+    assert results > 0
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>features/steps/googlesearch.py</p>
+        <pre>
+          <code class="hljs python">from behave import given, when, then
+
+from features.steps.pages import *
+
+
+@given('a user visit google')
+def step_impl(context):
+    page = SearchPage(context)
+    page.load('http://www.google.com')
+
+
+@when('the user searches for the "{search}" phrase')
+def step_impl(context, search):
+    page = SearchPage(context)
+    page.search(search)
+
+
+@then('one of the results contains: "{expected_result}"')
+def step_impl(context, expected_result):
+    page = ResultPage(context)
+    results = page.phrase_result_count(expected_result)
+    assert results > 0
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>features/environment.py</p>
+        <pre>
+          <code class="hljs python">from selenium import webdriver
+
+
+def before_scenario(context, scenario):
+    context.driver = webdriver.Chrome("C:/drivers/chromedriver.exe")
+    context.driver.implicitly_wait(10)
+
+
+def after_scenario(context, scenario):
+    context.driver.quit()
+          </code>
+        </pre>
+      </section>
       <section id="fixtures">
         <h2>Fixtures</h2>
       </section>
     </section>
-    <section>
-      <section id="stepdata">
+    <section id="stepdata">
+      <section>
         <h2>Step Data</h2>
       </section>
       <section id="multilinetext">
